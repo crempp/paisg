@@ -8,16 +8,13 @@
 
 class Subroutine {
     private name: string;
-    private age: number;
-    private salary: number;
 
-    constructor(name: string, age: number, salary: number) {
+    constructor(name: string) {
         this.name = name;
-        this.age = age;
-        this.salary = salary;
+        this.blah = "";
     }
 
     toString(): string {
-        return this.name + " (" + this.age + ")" + "("+ this.salary +")";
+        return this.name;
     }
 }
