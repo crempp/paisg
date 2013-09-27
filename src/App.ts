@@ -7,5 +7,6 @@ class App {
 
     toString(): string {
         //return this.name;
+        return "App";
     }
 }

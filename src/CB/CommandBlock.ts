@@ -11,7 +11,6 @@ class Subroutine {
 
     constructor(name: string) {
         this.name = name;
-        this.blah = "";
     }
 
     toString(): string {
