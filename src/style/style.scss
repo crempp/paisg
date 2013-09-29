@@ -1,0 +1,51 @@
+$main-background: #161616;
+$main-text: #cccccc;
+$active-background: #363636;
+
+html, body {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  background-color: $main-background;
+  color: $main-text;
+}
+
+#menu-bar {
+  width: 100%;
+  height: 20px;
+  padding: 2px;
+  font-family: 'Rationale', sans-serif;
+
+  #logo-container{
+    margin-left: 10px;
+  }
+  #menu-container{
+    float: right;
+    margin-right: 10px;
+    .menu-item {
+      float: left;
+      cursor: pointer;
+      border: 1px solid $main-background;
+      border-radius: 2px;
+      height: 16px;
+      width: 20px;
+      text-align: center;
+      line-height: 16px;
+      margin-left: 1px;
+      margin-right: 1px;
+      &:hover {
+        background-color: $active-background;
+        border: 1px solid #969696;
+
+      }
+    }
+  }
+}
+
+#game-canvas {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
