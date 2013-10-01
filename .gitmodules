@@ -1,0 +1,3 @@
+[submodule "src/scripts/modules/GL"]
+	path = src/scripts/modules/GL
+	url = git@bitbucket.org:sbattin/gameloop.git

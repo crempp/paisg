@@ -69,6 +69,13 @@ module.exports = function(grunt) {
                         cwd: 'src/scripts',
                         src:  'main.js',
                         dest: 'web/js/'
+                    },
+                    // Copy Seth's scripts
+                    {
+                        expand: true,
+                        cwd: 'src/scripts/modules/GL',
+                        src:  '**/*.js',
+                        dest: 'web/js/GL'
                     }
                 ]
             }

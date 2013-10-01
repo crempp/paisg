@@ -8,6 +8,18 @@
     <link href='http://fonts.googleapis.com/css?family=Rationale' rel='stylesheet' type='text/css'>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
+    <!-- TODO: Move these into require -->
+    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+
+    <script type="text/javascript" src="js/GL/js/loop.js" ></script>
+    <script type="text/javascript" src="js/GL/js/tester.js" ></script>
+    <script type="text/javascript" src="js/GL/js/components/starfield.js"></script>
+    <script type="text/javascript" src="js/GL/js/components/flagwave.js"></script>
+    <script type="text/javascript" src="js/GL/js/components/clear.js"></script>
+    <script type="text/javascript" src="js/GL/js/components/spaceship.js"></script>
+    <script type="text/javascript" src="js/GL/js/components/input.js"></script>
+    <script type="text/javascript" src="js/GL/js/components/debug.js"></script>
+
     <script data-main="js/application" type="text/javascript" src="js/lib/require.js"></script>
 
     <script type="text/javascript">
@@ -21,10 +33,10 @@
         </span>
 
         <span id='menu-container'>
-            <div class='menu-item menu-button'>⌬</div>
-            <div class='menu-item'>⌥</div>
-            <div class='menu-item'>⊞</div>
-            <div class='menu-item'>⊟</div>
+            <div id='menu-button-cb'    class='menu-item menu-button'>⌬</div>
+            <div id='menu-button-blah'  class='menu-item'>⌥</div>
+            <div id='menu-button-max'   class='menu-item'>⊞</div>
+            <div id='menu-button-unmax' class='menu-item'>⊟</div>
         </span>
     </header>
     <div id='game-container'>
@@ -32,6 +44,16 @@
             <p>Your browser does not support html5 canvas.  Download a better one (<a href="http://www.google.com/chrome/">Chrome</a> ).</p>
             <img id="ship" src="assets/images/spaceship-icon.png"  />
         </canvas>
+        <canvas id="debug" width="250" height="360">
+            <p>Your browser does not support html5 canvas.  Download a better one (<a href="http://www.google.com/chrome/">Chrome</a> ).</p>
+        </canvas>
+        <canvas id="test" width="640" height="100" style="display:none;">
+            <p>Your browser does not support html5 canvas.  Download a better one (<a href="http://www.google.com/chrome/">Chrome</a> ).</p>
+        </canvas>
+    </div>
+
+    <div id='control-block'>
+
     </div>
 
 </body>
