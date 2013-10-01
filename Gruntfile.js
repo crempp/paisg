@@ -2,32 +2,13 @@
 module.exports = function(grunt) {
     'use strict';
 
+    var _  = grunt.util._ ;
+    var config = require('./require.config');
+
     // Project configuration.
     grunt.initConfig({
         // Metadata.
         pkg: grunt.file.readJSON('package.json'),
-        tslint: {
-            options: {
-                configuration: {
-                    classname:            true,
-                    curly:                true,
-                    dupkey:               true,
-                    'duplicate-variable': true,
-                    eqeqeq:               true,
-                    indent:               true,
-                    labelpos:             true,
-                    'label-undefined':    true,
-                    newcap:               true,
-                    nounreachable:        true,
-                    noempty:              true,
-                    radix:                true,
-                    semicolon:            true
-                }
-            },
-            files: {
-                src: ['src/scripts/**/*.ts']
-            }
-        },
         sass: {
             dist: {
                 files: [{
@@ -39,22 +20,16 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        typescript: {
-            base: {
-                //cwd: 'src/scripts',
-                //src: ['**/*.ts'],
-                src: ['src/scripts/App.ts'],
-                //src: ['./App.ts'],
-                dest: 'web/js/app',
-                options: {
-                    module:            'amd', //or commonjs
-                    target:            'es5', //or es3
-                    base_path:         'src/scripts',
-                    //baseUrl:           'js',
-                    sourcemap:         true,
-                    fullSourceMapPath: true,
-                    declaration:       true
-                }
+        requirejs: {
+            app:{
+                options: _.merge(config, {
+                    findNestedDependencies:true,
+                    optimize: "none",
+                    baseUrl:  "src/scripts",
+                    name:     "main",
+                    mainConfigFile: "require.config.js",
+                    out:      "web/js/application.js"
+                })
             }
         },
         copy: {
@@ -91,17 +66,10 @@ module.exports = function(grunt) {
                     // Copy main require.js file
                     {
                         expand: true,
-                        cwd: 'src',
+                        cwd: 'src/scripts',
                         src:  'main.js',
                         dest: 'web/js/'
                     }
-                    // Until Seth rewrites his stuff in TypeScript copy GL
-//                    {
-//                        expand: true,
-//                        cwd: 'src/scripts/modules/GL',
-//                        src:  '**/*.js',
-//                        dest: 'web/js/GL'
-//                    },
                 ]
             }
         },
@@ -114,9 +82,9 @@ module.exports = function(grunt) {
                 files: 'style/**/*.scss',
                 tasks: ['sass']
             },
-            typescript: {
-                files: 'src/**/*.ts',
-                tasks: ['typescript']
+            requirejs: {
+                files: 'src/scripts/**/*.js',
+                tasks: ['requirejs']
             }
         }
     });
@@ -125,20 +93,15 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-typescript');
-    grunt.loadNpmTasks('grunt-tslint');
 
 
     //test out just the require.js task
     grunt.registerTask('build',['requirejs']);
 
     // Default task
-    grunt.registerTask('default', [ 'tslint', 'typescript', 'sass', 'copy']);
-
-    grunt.registerTask('compile', [ 'typescript' ]);
+    grunt.registerTask('default', ['requirejs', 'sass', 'copy']);
 
 };

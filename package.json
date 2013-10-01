@@ -18,8 +18,6 @@
     "grunt-typescript": "~0.2.4",
     "grunt-tslint": "~0.2.3",
     "grunt": "~0.4.1",
-    "typescript": "~0.9.1-1",
-    "tslint": "~0.3.0",
     "requirejs": "~2.1.8"
   }
 }

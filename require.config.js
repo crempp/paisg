@@ -1,7 +1,7 @@
 var config = {
 	config: {
 		app:{
-			dataStash: ['a','b','c']
+
 		}
 	}
 };

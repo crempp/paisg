@@ -10,7 +10,7 @@ export module CommandBlock {
         //private name: string;
 
         constructor(name: string) {
-            //this.name = name;
+            console.log("New Block");
 
         }
 
