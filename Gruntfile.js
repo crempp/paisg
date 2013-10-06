@@ -86,7 +86,7 @@ module.exports = function(grunt) {
                 tasks: ['copy']
             },
             sass: {
-                files: 'style/**/*.scss',
+                files: 'src/style/**/*.scss',
                 tasks: ['sass']
             },
             requirejs: {

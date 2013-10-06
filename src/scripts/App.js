@@ -3,7 +3,16 @@
  *
  */
 
-define(["require", "exports", "modules/UI/Menu", "modules/CB/CommandBlock"], function(require, exports, Menu, CommandBlock) {
+define(["require",
+        "exports",
+        "modules/UI/Menu",
+        "modules/CB/CommandBlock",
+        "modules/StubAdapter"],
+        function(require,
+                 exports,
+                 Menu,
+                 CommandBlock,
+                 StubAdapter) {
     var App = (function () {
 
         /**
@@ -13,6 +22,10 @@ define(["require", "exports", "modules/UI/Menu", "modules/CB/CommandBlock"], fun
          */
         function App() {
             console.log("New App");
+            var _this = this;
+            $(document).ready(function(){
+                _this.start();
+            });
         }
 
         /**
@@ -21,34 +34,35 @@ define(["require", "exports", "modules/UI/Menu", "modules/CB/CommandBlock"], fun
         App.prototype.start = function () {
             console.log("Staring application");
 
-            // Seth's Initialization
-            /*
-            Game = new GameLoop('game-canvas');
-            var clear = new Clear();
-            clear.color = "#000040";
-            Game.addItem(clear);
-            var ship = new SpaceShip();
-            ship.readyLoadImageId('ship');
-
-            var keyinput = new keyInput();
-            var mouseinput = new mouseInput('game-canvas');
-
-            ship.setInput(keyinput);
-            Game.addItem(ship);
-
-
-            debugout = new GameLoop('debug');
-
-            var debug = new Debug();
-            debugout.addItem(debug);
-            debug.setFullWidth(true);
-            debug.addItem(mouseinput, mouseinput.getMousePosition, 'mouse');
-            debug.addItem(ship, 'getForwardNormal', 'shipfront');
-            debug.addItem(ship, 'getVelocity', 'ship_v');
-            */
+            var STUB_SUBROUTINE = 'nav_prop_test';
 
             // Startup Chad's code
             var m = new Menu.Menu();
+
+            // Create a command block
+            var cb = new CommandBlock.CommandBlock();
+
+            // Seth's Initialization
+            Game = new GameLoop('game-canvas');
+            var clear = new Clear();
+            //clear.color = "#000040";
+            clear.color = "#000000";
+            Game.addItem(clear);
+
+            // Create entity
+            var entity = new SpaceShip();
+            entity.setPosition({x: 100, y: 50})
+            entity.readyLoadImageId('ship');
+
+            // Create Adapter
+            var adapter = new StubAdapter.StubAdapter(cb, entity);
+
+            // Finish GL setup
+            entity.setInput(adapter);
+            adapter.bootAI(STUB_SUBROUTINE).done(function(){
+                Game.addItem(entity);
+            });
+
         };
 
         return App;

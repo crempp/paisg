@@ -12,7 +12,7 @@ define(["require", "exports"], function(require, exports) {
          * @constructor
          */
         function CommandBlock() {
-            console.log("New App");
+            console.log("New Command Block");
         }
 
         /**
@@ -21,6 +21,14 @@ define(["require", "exports"], function(require, exports) {
         CommandBlock.prototype.start = function () {
 
         };
+
+        CommandBlock.prototype.getThrust = function () {
+            return 1;
+        };
+        CommandBlock.prototype.getTorque = function () {
+            return 1;
+        };
+
 
         return CommandBlock;
     })();
