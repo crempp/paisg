@@ -61,6 +61,16 @@ define(["require",
             entity.setInput(adapter);
             adapter.bootAI(STUB_SUBROUTINE).done(function(){
                 Game.addItem(entity);
+
+                // Setup debug
+                var debugout = new GameLoop('debug');
+                var debug = new Debug();
+                debugout.addItem(debug);
+                debug.setFullWidth(true);
+                //debug.addItem(mouseinput, mouseinput.getMousePosition, 'mouse');
+                debug.addItem(entity, 'getForwardNormal', 'shipfront');
+                debug.addItem(entity, 'getVelocity', 'ship_v');
+
             });
 
         };

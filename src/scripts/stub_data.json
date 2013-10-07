@@ -1,0 +1,8 @@
+[
+    {
+        name: "Test - NavSine",
+        desc: "Test the navigation API. Uses Sine to vary thrust and torque",
+        vers: "1.0",
+        file: "nav_prop_test.js"
+    }
+]
