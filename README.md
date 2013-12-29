@@ -19,13 +19,15 @@ Road Map
 -----
 * v0.1 - Basic POC
        - [✓] Simple planetary system
-       - [ ] 3 ship types
-       - [ ] Server communication
-       - [ ] 1 Pre-built navigation module (will be used for all 3 ships)
-       - [ ] Modules executed on server
-       - [ ] Results of executed modules sent to clients
-       - [ ] Game client units updated with new state
-* v0.2 - Support for more modules?
+       - [✓] Server communication
+       - [✓] 1 Pre-built navigation module (will be used for all 3 ships)
+       - [✓] Modules executed on server
+       - [✓] Results of executed modules sent to clients
+       - [✓] Game client units updated with new state
+* v0.2 - Support for more modules
+       - [ ] Module uploads
+	   - [ ] Sensor modules
+	   - [ ] 3 ship types
 * v0.3 - ?
 * v0.4 - ?
 
