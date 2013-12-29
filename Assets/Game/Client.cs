@@ -1,48 +1,70 @@
-using UnityEngine;
+using Networking;
+using SimpleJSON;
+using System;
 using System.Collections;
-using System.Net.Sockets;
-using System.Text;
+using UnityEngine;
 
-public class Client : MonoBehaviour {
+public class Client : MonoBehaviour
+{
 
-    static private string host = "10.20.0.106";
-    static private int port = 25989;
+    public string host = "10.20.0.105";
+    public int port = 25989;
+    public int playerID = 1;
 
-	// Use this for initialization
-	void Start () {
-        Blah();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-    
-    static void Blah()
+    private JSONNode state = null;
+
+    // Use this for initialization
+    void Start()
     {
-        TcpClient tcpClient = new TcpClient();
-        tcpClient.Connect(host, port);
-        NetworkStream clientStream = tcpClient.GetStream();
+        Command.RegisterCommandHandler(Command.STATUS_UPDATE, HandleStateUpdate);
+        Connection.Connect(host, port, playerID);
+    }
 
-        byte[] message = new byte[4096];
-        int bytesRead;
-        bytesRead = 0;
-
-        try
+    // Update is called once per frame
+    void Update()
+    {
+        if (null != state)
         {
-            // Read up to 4096 bytes
-            bytesRead = clientStream.Read(message, 0, 4096);
-        }
-        catch
-        { 
-            /*a socket error has occured*/ 
-        }
+            for (int j = 0; j < state["units"].Count; j++)
+            {
+                JSONNode unit = state["units"][j];
 
-        //We have read the message.
-        ASCIIEncoding encoder = new ASCIIEncoding();
-        //Console.WriteLine(encoder.GetString(message, 0, bytesRead));
-        Debug.Log(encoder.GetString(message, 0, bytesRead));
+                //Debug.Log("HDFL");
+                //Debug.Log(unit["name"]);
 
-        tcpClient.Close();
+                GameObject unitObj = GameObject.Find(unit["name"]);
+                if (unitObj)
+                {
+                    DroneLogic dLogic = (DroneLogic)unitObj.GetComponent(typeof(DroneLogic));
+                    dLogic.setState(unit);
+                }
+                else
+                {
+                    Debug.Log("not found");
+                }
+            }
+        }
+    }
+
+    public void HandleStateUpdate(JSONNode data)
+    {
+        for (int i = 0; i < data.Count; i++)
+        {
+            JSONNode player = data[i];
+
+            int currPlayerID = Convert.ToInt32(player["id"]);
+
+            if (currPlayerID == playerID)
+            {
+                // This is me
+                state = player;
+            }
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        //client.Close();
+        Connection.Disconnect();
     }
 }

@@ -24,10 +24,16 @@ Road Map
        - [ ] 1 Pre-built navigation module (will be used for all 3 ships)
        - [ ] Modules executed on server
        - [ ] Results of executed modules sent to clients
-       - [ ] Game client updated
+       - [ ] Game client units updated with new state
 * v0.2 - Support for more modules?
 * v0.3 - ?
 * v0.4 - ?
+
+TODO
+----
+* File upload
+* Script CPU time limit
+
 
 Credits for temporary assets
 -----
