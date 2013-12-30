@@ -1,9 +1,16 @@
 # Project ignores
-web/css/*
-web/img/*
-web/js/*
-web/assets/*
 
+#====Unity Files====
+*.sln
+*.userprefs
+*.csproj
+*.pidb
+*.unityproj
+*.suo
+*.user
+Library
+Obj
+Temp
 
 #====Gross Unix Files====
 *~
