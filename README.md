@@ -32,10 +32,20 @@ Road Map
 * v0.4 - ?
 
 TODO
-----
+-----
 * File upload
 * Script CPU time limit
 
+Third-party Resources and Requirements
+-----
+AffinityUI - http://affinityui.codeplex.com/
+A great UI library for Unity3D. Too bad it seems to have been abandoned.
+
+Unity Simple JSON Parser script - http://wiki.unity3d.com/index.php/SimpleJSON
+SimpleJSON is an easy to use JSON parser and builder
+
+Spacescape - http://alexcpeterson.com/spacescape
+A space skybox builder.
 
 Credits for temporary assets
 -----

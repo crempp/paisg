@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Networking;
 
 public class Loader : MonoBehaviour {
 
@@ -7,16 +8,14 @@ public class Loader : MonoBehaviour {
 	void Start () {
         this.BuildScreen();
 
-        this.Print("blah");
+		this.DoLoad();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-        //Debug.Log ("Planet selected");
+        //Debug.Log ("");
 	}
     
     private void OnGUI() {
-        
         
     }
 
@@ -32,10 +31,26 @@ public class Loader : MonoBehaviour {
 
     private void Print(string msg)
     {
-        // Grab the texture
-        GameObject loadList = GameObject.Find("LoadList");
+        // Grab the text object
+        GameObject loadList = GameObject.Find("LoadText");
         GUIText loadListText = loadList.guiText;
 
         loadListText.text = msg;
     }
+
+	private void DoLoad()
+	{
+		this.Print("Connecting to server...");
+		Client.Connect();
+
+		this.Print("Checking for updates...");
+		// TODO: Check server for updates, not sure how to do this.
+
+		this.Print("Updating game state...");
+		// Check game state on server and download necesary changes.
+
+		this.Print("Done");
+
+		Application.LoadLevel("paisg");
+	}
 }
